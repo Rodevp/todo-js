@@ -64,5 +64,37 @@
     cursor: pointer;
 }
 
+.content__input--add {
+    height: 40px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content__input--add input {
+    height: 100%;
+    width: 70%;
+    border-radius: 5px;
+    font-family: var(--font);
+    font-size: 1rem;
+    text-align: center;
+    border: 1px solid var(--Very-dark-Blue);
+}
+
+.content__input--add input:focus {
+    outline: none;
+}
+
+.content__input--add button {
+    width: 25%;
+    height: 100%;
+    border: none;
+    font-family: var(--font);
+    color: var(--Very-Light-Gray);
+    background-color: var(--Very-dark-Blue);
+}
 
 
