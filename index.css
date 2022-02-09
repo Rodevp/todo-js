@@ -8,24 +8,61 @@
 :root {
     /* Light Theme*/
     
-    --Very-Light-Gray: hsl(0, 0%, 98%)
-    --Very-Light-Grayish-Blue: hsl(236, 33%, 92%)
-    --Light-Grayish-Blue: hsl(233, 11%, 84%)
-    --Dark-Grayish-Blue: hsl(236, 9%, 61%)
-    --Very-Dark-Grayish-Blue: hsl(235, 19%, 35%)
+    --Very-Light-Gray: hsl(0, 0%, 98%);
+    --Dark-Grayish-Blue: hsl(236, 9%, 61%);
+    --Very-Dark-Grayish-Blue: hsl(235, 19%, 35%);
     /* Dark Theme */
-    --Very-ark-Blue: hsl(235, 21%, 11%)
-    --Very-ark-Desaturated-Blue: hsl(235, 24%, 19%)
-    --Light-rayish-Blue: hsl(234, 39%, 85%)
-    --Light-rayish-Blue-hover: hsl(236, 33%, 92%)
-    --Dark-rayish-Blue: hsl(234, 11%, 52%)
-    --Very-ark Grayish-Blue: hsl(233, 14%, 35%)
-    --Very-ark Grayish-Blue: hsl(237, 14%, 26%)
+    --Very-dark-Blue: hsl(235, 21%, 11%);
+    --Very-dark-Desaturated-Blue: hsl(235, 24%, 19%);
+    --Very-dark-Grayish-Blue: hsl(233, 14%, 35%);
+    --Very-dark-Grayish-Blue: hsl(237, 14%, 26%);
 
     --font: 'Josefin Sans';
 
 }
 
+
+.header {
+    height: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: rgb(22,23,34);
+    background: linear-gradient(90deg, rgba(22,23,34,1) 34%, rgba(37,8,48,1) 79%);
+}
+
+.header__title, .content__btn {
+    width: 40%;
+    display: flex;
+}
+
+.header__title {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-family: var(--font);
+    height: 50%;
+    font-size: 1.5rem;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    color: var(--Very-Light-Gray);
+}
+
+.content__btn {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--Very-Light-Gray);
+}
+
+.content__btn button {
+    width: 95%;
+    height: 95%;
+    border-radius: 50%;
+    cursor: pointer;
+}
 
 
 
