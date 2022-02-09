@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./app.css">
+    <title>Todo JS</title>
+</head>
+
+<body>
+
+    <header class="header">
+        <h1 class="header__title">
+            TODO APP
+        </h1>
+        <div class="content__btn">
+            <button>
+                <img src="./images/icon-moon.svg" alt="icon moon">
+            </button>
+        </div>
+    </header>
+
+    <div class="content__input--add">
+        <input type="text" placeholder="Agregar tarea..." id="add-input">
+    </div>
+
+    <main class="task__content">
+        <section class="task">
+            <div class="task">
+                <div class="check__task">
+    
+                </div>
+                <h2 class="title__task">
+                    Jugar al mario kart
+                </h2>
+                <button class="task__delete_btn">
+                    X
+                </button>
+            </div>
+        </section>
+        <section class="task__information">
+            <h2 class="tasks__to_complete">
+                5 tareas por completar
+            </h2>
+            <button class="btn__clear_complete_task">
+                Eliminar tareas completadaas
+            </button>
+        </section>
+        
+        <section class="operations">
+            <button class="get__all_task">
+                Todas
+            </button>
+            <button class="get__active_task">
+                Tareas activas
+            </button>
+            <button class="get__complete_task">
+                Tareas Completadas
+            </button>
+        </section>
+    </main>
+
+
+    
+
+
+    <script src="./app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+    /* Light Theme*/
+    
+    --Very-Light-Gray: hsl(0, 0%, 98%)
+    --Very-Light-Grayish-Blue: hsl(236, 33%, 92%)
+    --Light-Grayish-Blue: hsl(233, 11%, 84%)
+    --Dark-Grayish-Blue: hsl(236, 9%, 61%)
+    --Very-Dark-Grayish-Blue: hsl(235, 19%, 35%)
+    /* Dark Theme */
+    --Very-ark-Blue: hsl(235, 21%, 11%)
+    --Very-ark-Desaturated-Blue: hsl(235, 24%, 19%)
+    --Light-rayish-Blue: hsl(234, 39%, 85%)
+    --Light-rayish-Blue-hover: hsl(236, 33%, 92%)
+    --Dark-rayish-Blue: hsl(234, 11%, 52%)
+    --Very-ark Grayish-Blue: hsl(233, 14%, 35%)
+    --Very-ark Grayish-Blue: hsl(237, 14%, 26%)
+
+    --font: 'Josefin Sans';
+
+}
+
+
+
+
