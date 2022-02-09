@@ -1,6 +1,3 @@
-const allTask = []
-const tasksCompledted = []
-const taskToComplete = []
 const addInput = document.getElementById('add-input')
 const addBtn = document.getElementById('add_btn')
 let LENGTH_TO_COMPLETE = 0
@@ -10,39 +7,63 @@ const saveLocalStorage = (key, value) => {
 }
 
 const addTask = (task) => {
-    allTask.push(task)
+    const allTask = localStorage.getItem('all') !== null
+    ? JSON.parse( localStorage.getItem('all') )
+    : []
+    const arrCopy = [...allTask, task]
+    saveLocalStorage('all', JSON.stringify( arrCopy ) )
 }
+
+const checkTask = e => {
+
+    e.stopPropagation()
+
+    const checkDiv = document.getElementById('check__task')
+
+    checkDiv.classList.toggle('checked')
+
+    console.log('click')
+
+}
+
 
 const printTask = (task) => {
 
     const taskContent = document.getElementById('task')
     const fragment = document.createDocumentFragment();
+    taskContent.innerHTML = ''
+    
+    if (task !== null) {
+        
+        task.forEach(taskElement => {
+            
+            const div = document.createElement('div')
+            const divChek = document.createElement('div')
+            const h2 = document.createElement('h2')
+            const button = document.createElement('button')
 
-    task.forEach(taskElement => {
+            divChek.setAttribute('id', 'check__task')
+            divChek.setAttribute('class','check__task')
+            divChek.addEventListener('click', checkTask)
 
-        const div = document.createElement('div');
-        const divChek = document.createElement('div');
-        const h2 = document.createElement('h2');
-        const button = document.createElement('button');
+            div.setAttribute('class','task')
+            h2.setAttribute('class','title__task')
+            button.setAttribute('class','task__delete_btn')
 
-        div.classList.add('task')
-        divChek.classList.add('check__task')
-        h2.classList.add('title__task')
-        button.classList.add('task__delete_btn')
+            h2.textContent = taskElement.title
+            button.textContent = 'X'
 
-        h2.textContent = taskElement.title
-        button.textContent = 'X'
+            div.appendChild(divChek)
+            div.appendChild(h2)
+            div.appendChild(button)
 
-        div.appendChild(divChek)
-        div.appendChild(h2)
-        div.appendChild(button)
+            fragment.appendChild(div)
 
-        fragment.appendChild(div)
+        })
 
-    })
-
-    taskContent.appendChild(fragment)
-
+        taskContent.appendChild(fragment)
+    }
+    
 }
 
 addInput.addEventListener('keyup', e => {
@@ -52,15 +73,15 @@ addInput.addEventListener('keyup', e => {
 
     if (KEY_CODE === 'Enter' && titleTask !== '') {
 
-        const task = {
+        let task = {
             title: titleTask,
             isCompleted: false
         }
 
         addTask(task)
-
-        saveLocalStorage('all', JSON.stringify(allTask))
         printTask(JSON.parse(localStorage.getItem('all')))
+
+        task = {}
 
         e.target.value = ''
 
@@ -88,5 +109,5 @@ addBtn.addEventListener('click', e => {
 
 })
 
-
-printTask(JSON.parse(localStorage.getItem('all')))
+const data = JSON.parse(localStorage.getItem('all')) 
+printTask(data)
