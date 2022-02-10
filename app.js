@@ -5,8 +5,12 @@ const allTask = document.getElementById('all_btn')
 const taskActives = document.getElementById('actives')
 const checkTask = document.getElementById('check')
 const clearCompleted = document.getElementById('clear__completed')
+const infoCompleted = document.getElementById('info_completed')
 
-let LENGTH_TO_COMPLETE = 0
+localStorage.getItem('info_completed') === null 
+? localStorage.setItem('info_completed', 0)
+: console.log('')
+
 localStorage.getItem('id') === null
 ? localStorage.setItem('id', 0) 
 : console.log('')
@@ -16,11 +20,15 @@ const saveLocalStorage = (key, value) => {
 }
 
 const addTask = (task) => {
+
     const allTask = localStorage.getItem('all') !== null
         ? JSON.parse(localStorage.getItem('all'))
         : []
     const arrCopy = [...allTask, task]
+    localStorage.setItem('info_completed', arrCopy.filter(e => e.isCompleted === false).length)       
     saveLocalStorage('all', JSON.stringify(arrCopy))
+
+    infoCompleted.textContent = `${localStorage.getItem('info_completed')} sin completar`
 }
 
 const filterTaskCompleted = (tasks) => {
@@ -50,6 +58,11 @@ const checkedTask = e => {
         allTask.splice(pos, 1, element)
         saveLocalStorage('all', JSON.stringify(allTask) )
 
+        const notCompleted = allTask.filter(e => e.isCompleted !== true).length
+        localStorage.setItem('info_completed', notCompleted)
+        infoCompleted.textContent = `${localStorage.getItem('info_completed')} sin completar`  
+
+
     }
 
 }
@@ -64,7 +77,11 @@ const deleteTask = e => {
         saveLocalStorage('all', JSON.stringify(taskArrayNew)  )
         printTask( JSON.parse(localStorage.getItem('all') ) )
 
+        localStorage.setItem('info_completed', taskArrayNew.filter(e => e.isCompleted === false).length) 
+
     }
+
+    infoCompleted.textContent = `${localStorage.getItem('info_completed')} sin completar`
 
 }
 
@@ -122,6 +139,8 @@ const printTask = (task) => {
         taskContent.appendChild(h2)
 
     }
+
+    infoCompleted.textContent = `${localStorage.getItem('info_completed')} sin completar`
 
 }
 
