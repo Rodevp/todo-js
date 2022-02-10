@@ -1,5 +1,6 @@
 const addInput = document.getElementById('add-input')
 const addBtn = document.getElementById('add_btn')
+const completedTask = document.getElementById('actives')
 let LENGTH_TO_COMPLETE = 0
 
 const saveLocalStorage = (key, value) => {
@@ -14,6 +15,15 @@ const addTask = (task) => {
     saveLocalStorage('all', JSON.stringify( arrCopy ) )
 }
 
+const filterTask = (e) => {
+    const filtered = JSON.parse( localStorage.getItem('all') )
+    console.log(filtered)
+
+    const filterData = filtered.filter(task => task.isCompleted !== false)
+    console.log(filterData)
+
+}
+
 const checkTask = e => {
 
     e.stopPropagation()
@@ -25,7 +35,6 @@ const checkTask = e => {
     console.log('click')
 
 }
-
 
 const printTask = (task) => {
 
@@ -73,15 +82,13 @@ addInput.addEventListener('keyup', e => {
 
     if (KEY_CODE === 'Enter' && titleTask !== '') {
 
-        let task = {
+        const task = {
             title: titleTask,
             isCompleted: false
         }
 
         addTask(task)
         printTask(JSON.parse(localStorage.getItem('all')))
-
-        task = {}
 
         e.target.value = ''
 
@@ -101,13 +108,13 @@ addBtn.addEventListener('click', e => {
     }
 
     addTask(task)
-
-    saveLocalStorage('all', JSON.stringify(allTask))
     printTask(JSON.parse(localStorage.getItem('all')))
 
     input.value = ''
 
 })
+
+completedTask.addEventListener('click', filterTask)
 
 const data = JSON.parse(localStorage.getItem('all')) 
 printTask(data)
