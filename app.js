@@ -36,8 +36,18 @@ const checkedTask = e => {
 
     if (e.target.dataset.idTask === e.target.dataset.idtwoTask) {
 
+
         const el = document.querySelector(`[check="${e.target.dataset.idTask}"]`)
         el.classList.toggle('check__task--checked')
+
+        const id = Number(e.target.dataset.idTask);
+        const element = JSON.parse( localStorage.getItem('all') ).find(e => Number(e.id) === id)
+        const pos = JSON.parse( localStorage.getItem('all') ).findIndex(e => Number(e.id) === id)
+        element.isCompleted = element.isCompleted ? false : true
+
+        const allTask = [...JSON.parse( localStorage.getItem('all') ) ]
+        allTask.splice(pos, 1, element)
+        saveLocalStorage('all', JSON.stringify(allTask) )
 
     }
 
@@ -47,12 +57,9 @@ const deleteTask = e => {
 
     if (e.target.dataset.btnTask === e.target.dataset.btntwoTask) {
 
-        console.log('btn', e.target.dataset)
-
         const idTask = Number(e.target.dataset.btnTask)
         const taskArrayNew = [...JSON.parse(localStorage.getItem('all') ) ].filter(e => e.id !== idTask) 
-        console.log(idTask)
-        console.log(taskArrayNew)
+
         saveLocalStorage('all', JSON.stringify(taskArrayNew)  )
         printTask( JSON.parse(localStorage.getItem('all') ) )
 
@@ -68,7 +75,7 @@ const printTask = (task) => {
 
     if (task !== null) {
 
-        task.forEach((taskElement, i) => {
+        task.forEach((taskElement) => {
 
             const div = document.createElement('div')
             const divChek = document.createElement('div')
