@@ -4,6 +4,7 @@ const completedTask = document.getElementById('completed')
 const allTask = document.getElementById('all_btn')
 const taskActives = document.getElementById('actives')
 const checkTask = document.getElementById('check')
+const clearCompleted = document.getElementById('clear__completed')
 
 let LENGTH_TO_COMPLETE = 0
 localStorage.getItem('id') === null
@@ -207,6 +208,12 @@ taskActives.addEventListener('click', e => {
     const activesTaskFilter = JSON.parse(localStorage.getItem('actives'))
     printTask(activesTaskFilter)
 
+})
+
+clearCompleted.addEventListener('click', e => {
+    const allTask = JSON.parse(localStorage.getItem('all')).filter(e => !e.isCompleted)
+    saveLocalStorage('all', JSON.stringify(allTask))
+    printTask( JSON.parse( localStorage.getItem('all') ) )
 })
 
 const data = localStorage.getItem('all') !== null
