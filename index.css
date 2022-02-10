@@ -150,12 +150,20 @@
 }
 
 .check__task {
-    width: 10%;
-    height: 100%;
+    width: 30px;
+    height: 30px;
     font-family: var(--font);
     cursor: pointer;
     border-radius: 50%;
     border: 1px solid var(--Very-Dark-Grayish-Blue);
+}
+
+.check__task--checked {
+    background-color: var(--Very-dark-Blue);
+}
+
+.check__task--checked + .title__task {
+    text-decoration: line-through;
 }
 
 .title__task {

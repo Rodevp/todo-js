@@ -3,6 +3,7 @@ const addBtn = document.getElementById('add_btn')
 const completedTask = document.getElementById('completed')
 const allTask = document.getElementById('all_btn')
 const taskActives = document.getElementById('actives')
+const checkTask = document.getElementById('check')
 
 let LENGTH_TO_COMPLETE = 0
 
@@ -28,13 +29,13 @@ const filterTaskActives = (tasks) => {
     return filtered.length > 0 ? filtered : []
 }
 
-const checkTask = e => {
+const checkedTask = e => {
 
     e.stopPropagation()
 
-    const checkDiv = document.getElementById('check__task')
+    const checkDiv = document.getElementById('check')
 
-    checkDiv.classList.toggle('checked')
+    checkDiv.classList.toggle('check__task--checked')
 
     console.log('click')
 
@@ -48,18 +49,20 @@ const printTask = (task) => {
     
     if (task !== null) {
         
-        task.forEach(taskElement => {
-            
+        task.forEach((taskElement, i) => {
+            console.log(i)
             const div = document.createElement('div')
             const divChek = document.createElement('div')
             const h2 = document.createElement('h2')
             const button = document.createElement('button')
 
-            divChek.setAttribute('id', 'check__task')
+            divChek.setAttribute('id', 'check')
             divChek.setAttribute('class','check__task')
-            divChek.addEventListener('click', checkTask)
+            divChek.addEventListener('click', checkedTask)
 
             div.setAttribute('class','task')
+            div.setAttribute('data-id-task',`${i}`)
+
             h2.setAttribute('class','title__task')
             button.setAttribute('class','task__delete_btn')
 
@@ -79,7 +82,7 @@ const printTask = (task) => {
 
     if (task.length === 0 && task !== null ) {
         const h2 = document.createElement('h2')
-        h2.textContent = 'Ninguna completada'
+        h2.textContent = 'Ninguna Tarea'
 
         taskContent.innerHTML = ''
         taskContent.appendChild(h2)
@@ -154,5 +157,7 @@ taskActives.addEventListener('click', e => {
 
 })
 
-const data = JSON.parse(localStorage.getItem('all')) 
+const data = localStorage.getItem('all') !== null
+? JSON.parse(localStorage.getItem('all'))
+: [] 
 printTask(data)
