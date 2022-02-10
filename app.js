@@ -31,13 +31,12 @@ const filterTaskActives = (tasks) => {
 
 const checkedTask = e => {
 
-    e.stopPropagation()
+    if (e.target.idTask === e.target.idtwoTask ) {
+        
+        const el = document.querySelector(`[check="${e.target.dataset.idTask}"]`)
+        el.classList.toggle('check__task--checked')
 
-    const checkDiv = document.getElementById('check')
-
-    checkDiv.classList.toggle('check__task--checked')
-
-    console.log('click')
+    }
 
 }
 
@@ -59,16 +58,19 @@ const printTask = (task) => {
             divChek.setAttribute('id', 'check')
             divChek.setAttribute('class','check__task')
             divChek.addEventListener('click', checkedTask)
+            divChek.setAttribute('data-id-task',`${i}`)
+            divChek.setAttribute('data-idTwo-task',`${i}`)
+            divChek.setAttribute('check',`${i}`)
 
-            div.setAttribute('class','task')
-            div.setAttribute('data-id-task',`${i}`)
-
-            h2.setAttribute('class','title__task')
+            button.setAttribute('data-btn-task',`${i}`)
             button.setAttribute('class','task__delete_btn')
-
-            h2.textContent = taskElement.title
             button.textContent = 'X'
-
+            
+            h2.setAttribute('class','title__task')
+            h2.textContent = taskElement.title
+            
+            
+            div.setAttribute('class','task')
             div.appendChild(divChek)
             div.appendChild(h2)
             div.appendChild(button)
