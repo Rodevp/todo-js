@@ -83,7 +83,9 @@ const printTask = (task) => {
             const button = document.createElement('button')
 
             divChek.setAttribute('id', 'check')
-            divChek.setAttribute('class', 'check__task')
+            taskElement.isCompleted
+             ? divChek.setAttribute('class', 'check__task check__task--checked')
+             : divChek.setAttribute('class', 'check__task')
             divChek.addEventListener('click', checkedTask)
             divChek.setAttribute('data-id-task', `${taskElement.id}`)
             divChek.setAttribute('data-idTwo-task', `${taskElement.id}`)
